@@ -6,7 +6,7 @@ const Search = ({onSearchChange}) => {
 
   const handleOnChangeText = newText => {
     setSearchValue(newText);
-    onSearchChange(searchValue);
+    onSearchChange(newText);
   };
 
   console.log(searchValue);
