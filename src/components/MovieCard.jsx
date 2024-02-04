@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const heartEmpty = require('../assets/icons/heart-empty.png');
 
@@ -23,6 +24,11 @@ const MovieCard = ({data}) => {
             }}
           />
         </View>
+        <LinearGradient
+          colors={['#00000000', '#000000']}
+          style={styles.moviePosterGradient}
+        />
+        <Text style={styles.movieTitle}>{data.Title}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.saveButton}>
         <Image style={styles.saveIcon} source={heartEmpty} />
@@ -47,6 +53,21 @@ const styles = StyleSheet.create({
     height: 267,
     resizeMode: 'cover',
     borderRadius: 8,
+  },
+  moviePosterGradient: {
+    width: '100%',
+    height: 137,
+    borderRadius: 8,
+    position: 'absolute',
+    bottom: 0,
+  },
+  movieTitle: {
+    fontFamily: 'Roboto-Medium',
+    fontSize: 14,
+    color: '#FDFDFD',
+    padding: 12,
+    position: 'absolute',
+    bottom: 0,
   },
   saveButton: {
     width: 30,

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   FlatList,
   Image,
@@ -18,6 +18,8 @@ const Browse = () => {
   const [isHidden, setIsHidden] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
   const [searchValue, setSearchValue] = useState('avengers');
+
+  const flatListRef = useRef(null);
 
   useEffect(() => {
     const fetchOMDbMovies = async () => {
@@ -55,6 +57,8 @@ const Browse = () => {
   const handleOnSearchChange = value => {
     setSearchValue(value);
     setPageNum(1);
+
+    flatListRef.current?.scrollToOffset({offset: 0, animated: true});
   };
 
   console.log(movies);
@@ -94,6 +98,7 @@ const Browse = () => {
           renderItem={({item}) => <MovieCard key={item.imdbID} data={item} />}
           keyExtractor={item => item.imdbID}
           ListFooterComponent={showMore}
+          ref={flatListRef}
           // onEndReached={() => setPageNum(pageNum + 1)}
           // onEndReachedThreshold={0.1}
         />
