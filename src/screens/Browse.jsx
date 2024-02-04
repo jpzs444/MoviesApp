@@ -1,8 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {MovieCard, Search} from '../components';
 
 const userImg = require('../assets/images/user.png');
+const showMoreIcon = require('../assets/icons/show-more.png');
 
 const Browse = () => {
   const [movies, setMovies] = useState([]);
@@ -54,32 +62,101 @@ const Browse = () => {
   console.log(isHidden);
   console.log(searchValue);
 
+  const showMore = () => {
+    return (
+      <TouchableOpacity
+        style={!isHidden ? styles.showMore : styles.hideShowMore}
+        onPress={() => setPageNum(pageNum + 1)}>
+        <Text style={styles.showMoreText}>Show More</Text>
+        <Image style={styles.showMoreIcon} source={showMoreIcon} />
+      </TouchableOpacity>
+    );
+  };
+
   return (
-    <View style={{flex: 1}}>
-      <View>
-        <Text>Browse</Text>
+    <View style={styles.browserContainer}>
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerTitle}>Browse</Text>
         <Image
-          style={{width: 50, height: 50}}
+          style={styles.profilePicture}
           source={userImg}
           resizeMode="cover"
         />
       </View>
-      <Search onSearchChange={handleOnSearchChange} />
-      <View style={{flex: 1}}>
+      <View style={styles.searchComponentContainer}>
+        <Search onSearchChange={handleOnSearchChange} />
+      </View>
+      <View style={styles.movieListContainer}>
         <FlatList
+          numColumns={2}
+          columnWrapperStyle={styles.movieList}
           data={movies}
           renderItem={({item}) => <MovieCard key={item.imdbID} data={item} />}
           keyExtractor={item => item.imdbID}
+          ListFooterComponent={showMore}
+          // onEndReached={() => setPageNum(pageNum + 1)}
+          // onEndReachedThreshold={0.1}
         />
       </View>
-      {!isHidden && (
-        <TouchableOpacity onPress={() => setPageNum(pageNum + 1)}>
-          <Text>Show More</Text>
-        </TouchableOpacity>
-      )}
-      <Text>Navigation</Text>
     </View>
   );
 };
 
 export default Browse;
+
+const styles = StyleSheet.create({
+  browserContainer: {
+    flex: 1,
+    backgroundColor: '#FDFDFD',
+  },
+  headerTitle: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 30,
+    color: '#141313',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 32,
+    marginBottom: 22,
+    paddingHorizontal: 20,
+  },
+  profilePicture: {
+    width: 40,
+    height: 40,
+    borderRadius: 50,
+  },
+  searchComponentContainer: {
+    paddingHorizontal: 20,
+  },
+  movieListContainer: {
+    flex: 1,
+    paddingTop: 30,
+    marginHorizontal: 'auto',
+    alignItems: 'center',
+  },
+  movieList: {
+    columnGap: 12,
+    marginBottom: 12,
+  },
+  showMore: {
+    display: 'flex',
+    alignSelf: 'center',
+    alignItems: 'center',
+    marginVertical: 12,
+    opacity: 0.65,
+  },
+  showMoreText: {
+    fontFamily: 'Roboto-Medium',
+    fontSize: 12,
+    color: '#141313',
+  },
+  showMoreIcon: {
+    width: 18,
+    height: 18,
+    resizeMode: 'cover',
+  },
+  hideShowMore: {
+    display: 'none',
+  },
+});
