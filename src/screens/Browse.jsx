@@ -132,7 +132,6 @@ const styles = StyleSheet.create({
   movieListContainer: {
     flex: 1,
     paddingTop: 30,
-    marginHorizontal: 'auto',
     alignItems: 'center',
   },
   movieList: {
