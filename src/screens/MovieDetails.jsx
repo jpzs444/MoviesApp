@@ -84,7 +84,7 @@ const MovieDetails = ({route}) => {
             <View style={styles.ratingContainer}>
               <Image style={styles.ratingIcon} source={star} />
               <Text style={styles.ratingScore}>
-                {info.imdbRating}
+                {info.imdbRating ? info.imdbRating : 'N/A'}
                 <Text style={styles.ratingTotalScore}>/10</Text>
               </Text>
               <Text style={styles.ratingLabel}>IMDB RATING</Text>
@@ -103,7 +103,7 @@ const MovieDetails = ({route}) => {
             <View style={styles.ratingContainer}>
               <Image style={styles.ratingIcon} source={film} />
               <Text style={styles.ratingScore}>
-                {info.Ratings &&
+                {info.Ratings.length > 0 &&
                 /\/100$/.test(info.Ratings[info.Ratings.length - 1].Value)
                   ? info.Ratings[info.Ratings.length - 1].Value.slice(
                       0,
@@ -151,11 +151,15 @@ const MovieDetails = ({route}) => {
           {/* Actors */}
           <View style={styles.movieActorsMainContainer}>
             <Text style={styles.moviesActorsTitle}>Actors</Text>
-            <View style={styles.movieActorsContainer}>
-              {info.Actors.split(', ').map((actor, ind) => (
-                <ActorLink key={ind} actorName={actor} />
-              ))}
-            </View>
+            {info.Actors === 'N/A' ? (
+              <Text style={styles.movieActorsNA}>N/A</Text>
+            ) : (
+              <View style={styles.movieActorsContainer}>
+                {info.Actors.split(', ').map((actor, ind) => (
+                  <ActorLink key={ind} actorName={actor} />
+                ))}
+              </View>
+            )}
           </View>
 
           {/* CTA */}
@@ -311,6 +315,7 @@ const styles = StyleSheet.create({
     gap: 10,
     marginTop: 25,
     paddingHorizontal: 20,
+    flexWrap: 'wrap',
   },
   moviePlot: {
     fontFamily: 'Roboto-Light',
@@ -354,6 +359,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Medium',
     fontSize: 20,
     color: '#141313',
+  },
+  movieActorsNA: {
+    marginTop: 22,
   },
   ctaButtonsContainer: {
     flexDirection: 'row',

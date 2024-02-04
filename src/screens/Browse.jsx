@@ -23,7 +23,7 @@ const Browse = () => {
     const fetchOMDbMovies = async () => {
       try {
         const response = await fetch(
-          `http://www.omdbapi.com/?apikey=<KEY_HERE>&page=${pageNum}&s=${searchValue}&=movie`,
+          `http://www.omdbapi.com/?apikey=<KEY_HERE>&page=${pageNum}&s=${searchValue}&type=movie`,
         );
         if (!response.ok) {
           throw new Error('Network response was not ok');
