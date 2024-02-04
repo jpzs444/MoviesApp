@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import {ActorLink, CtaButton, Tag} from '../components';
+import LinearGradient from 'react-native-linear-gradient';
 
 const heartEmpty = require('../assets/icons/heart-empty.png');
 const star = require('../assets/icons/star.png');
@@ -52,7 +53,11 @@ const MovieDetails = ({route}) => {
         <Image
           style={styles.featureImage}
           source={{
-            uri: 'https://m.media-amazon.com/images/M/MV5BZjhmNWNiNmMtN2E2MS00MDc1LWJlMzMtYmY3NmY2YWI3MzI5XkEyXkFqcGdeQXZ3ZXNsZXk@._V1_QL75_UY281_CR0,0,500,281_.jpg',
+            uri: `${
+              details.imdbID === 'tt13238346'
+                ? 'https://m.media-amazon.com/images/M/MV5BZjhmNWNiNmMtN2E2MS00MDc1LWJlMzMtYmY3NmY2YWI3MzI5XkEyXkFqcGdeQXZ3ZXNsZXk@._V1_QL75_UY281_CR0,0,500,281_.jpg'
+                : 'https://lh3.googleusercontent.com/pw/ABLVV86LbpXIwvuPUrxDaHBvYwmW_i6FEgSWYnOT5E3s8jb7S13rR8Xi3Jyp_D1JM2OGfCW2z8hAecMiLeAVcq7JsYLaEe4RUjre6aY4OtUdoi0K6VDDDk0=w2400'
+            }`,
           }}
         />
         <TouchableOpacity
@@ -66,6 +71,10 @@ const MovieDetails = ({route}) => {
         <TouchableOpacity style={[styles.headerButton, styles.saveButton]}>
           <Image style={styles.saveIcon} source={heartEmpty} />
         </TouchableOpacity>
+        <LinearGradient
+          colors={['#8C8C8C00', '#D3D3D3']}
+          style={styles.backgroundGradient}
+        />
       </View>
       {/* 2nd Layer */}
       {info && (
@@ -216,6 +225,12 @@ const styles = StyleSheet.create({
     height: 22,
     resizeMode: 'cover',
   },
+  backgroundGradient: {
+    width: '100%',
+    height: 181,
+    position: 'absolute',
+    top: 116,
+  },
   infoContainer: {
     backgroundColor: '#FDFDFD',
     marginTop: -29,
@@ -322,6 +337,7 @@ const styles = StyleSheet.create({
   movieExtrasInfo: {
     fontFamily: 'Roboto-Light',
     fontSize: 16,
+    lineHeight: 24,
     color: '#141313',
     flex: 2.75,
   },

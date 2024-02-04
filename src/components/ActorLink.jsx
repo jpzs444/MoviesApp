@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontFamily: 'Roboto-Regular',
     fontSize: 14,
+    lineHeight: 18,
     textAlign: 'center',
     color: '#141313',
   },
