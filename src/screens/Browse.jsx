@@ -81,11 +81,13 @@ const Browse = () => {
     <View style={styles.browserContainer}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerTitle}>Browse</Text>
-        <Image
-          style={styles.profilePicture}
-          source={userImg}
-          resizeMode="cover"
-        />
+        <TouchableOpacity>
+          <Image
+            style={styles.profilePicture}
+            source={userImg}
+            resizeMode="cover"
+          />
+        </TouchableOpacity>
       </View>
       <View style={styles.searchComponentContainer}>
         <Search onSearchChange={handleOnSearchChange} />
