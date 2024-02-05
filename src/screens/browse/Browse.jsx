@@ -2,9 +2,8 @@ import React, {useEffect, useRef, useState} from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {MovieCard, Search} from '../../components';
 import {styles} from './browse.style';
-
-const userImg = require('../../assets/images/user.png');
-const showMoreIcon = require('../../assets/icons/show-more.png');
+import images from '../../assets/images';
+import icons from '../../assets/icons';
 
 const Browse = () => {
   const [movies, setMovies] = useState([]);
@@ -66,7 +65,7 @@ const Browse = () => {
         style={!isHidden ? styles.showMore : styles.hideShowMore}
         onPress={() => setPageNum(pageNum + 1)}>
         <Text style={styles.showMoreText}>Show More</Text>
-        <Image style={styles.showMoreIcon} source={showMoreIcon} />
+        <Image style={styles.showMoreIcon} source={icons.showMoreIcon} />
       </TouchableOpacity>
     );
   };
@@ -78,7 +77,7 @@ const Browse = () => {
         <TouchableOpacity>
           <Image
             style={styles.profilePicture}
-            source={userImg}
+            source={images.userImg}
             resizeMode="cover"
           />
         </TouchableOpacity>
@@ -91,7 +90,7 @@ const Browse = () => {
           numColumns={2}
           columnWrapperStyle={styles.movieList}
           data={movies}
-          renderItem={({item}) => <MovieCard key={item.imdbID} data={item} />}
+          renderItem={({item}) => <MovieCard data={item} />}
           keyExtractor={item => item.imdbID}
           ListFooterComponent={showMore}
           ref={flatListRef}

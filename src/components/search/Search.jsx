@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {Image, TextInput, View} from 'react-native';
 import {styles} from './search.style';
-
-const searchIcon = require('../../assets/icons/search.png');
+import icons from '../../assets/icons';
 
 const Search = ({onSearchChange}) => {
   const [searchValue, setSearchValue] = useState('');
@@ -23,7 +22,7 @@ const Search = ({onSearchChange}) => {
         onChangeText={newText => handleOnChangeText(newText)}
         style={[styles.text, styles.search]}
       />
-      <Image style={styles.searchIcon} source={searchIcon} />
+      <Image style={styles.searchIcon} source={icons.searchIcon} />
     </View>
   );
 };

@@ -4,12 +4,15 @@ import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {ActorLink, CtaButton, Tag} from '../../components';
 import LinearGradient from 'react-native-linear-gradient';
 import {styles} from './moviedetails.style';
+import images from '../../assets/images';
+import icons from '../../assets/icons';
 
-const heartEmpty = require('../../assets/icons/heart-empty.png');
-const star = require('../../assets/icons/star.png');
-const film = require('../../assets/icons/film.png');
-const heartWhite = require('../../assets/icons/heart-white.png');
-const share = require('../../assets/icons/share.png');
+const PAST_LIVES_FEAT_IMAGE =
+  'https://m.media-amazon.com/images/M/MV5BZjhmNWNiNmMtN2E2MS00MDc1LWJlMzMtYmY3NmY2YWI3MzI5XkEyXkFqcGdeQXZ3ZXNsZXk@._V1_QL75_UY281_CR0,0,500,281_.jpg';
+const DEFAULT_FEAT_IMAGE =
+  'https://lh3.googleusercontent.com/pw/ABLVV86LbpXIwvuPUrxDaHBvYwmW_i6FEgSWYnOT5E3s8jb7S13rR8Xi3Jyp_D1JM2OGfCW2z8hAecMiLeAVcq7JsYLaEe4RUjre6aY4OtUdoi0K6VDDDk0=w2400';
+const DEFAULT_POSTER =
+  'https://media.comicbook.com/files/img/default-movie.png';
 
 const MovieDetails = ({route}) => {
   const navigation = useNavigation();
@@ -49,21 +52,18 @@ const MovieDetails = ({route}) => {
           source={{
             uri: `${
               details.imdbID === 'tt13238346'
-                ? 'https://m.media-amazon.com/images/M/MV5BZjhmNWNiNmMtN2E2MS00MDc1LWJlMzMtYmY3NmY2YWI3MzI5XkEyXkFqcGdeQXZ3ZXNsZXk@._V1_QL75_UY281_CR0,0,500,281_.jpg'
-                : 'https://lh3.googleusercontent.com/pw/ABLVV86LbpXIwvuPUrxDaHBvYwmW_i6FEgSWYnOT5E3s8jb7S13rR8Xi3Jyp_D1JM2OGfCW2z8hAecMiLeAVcq7JsYLaEe4RUjre6aY4OtUdoi0K6VDDDk0=w2400'
+                ? PAST_LIVES_FEAT_IMAGE
+                : DEFAULT_FEAT_IMAGE
             }`,
           }}
         />
         <TouchableOpacity
           style={[styles.headerButton, styles.backButton]}
           onPress={() => navigation.goBack()}>
-          <Image
-            style={styles.backIcon}
-            source={require('../../assets/icons/back.png')}
-          />
+          <Image style={styles.backIcon} source={icons.back} />
         </TouchableOpacity>
         <TouchableOpacity style={[styles.headerButton, styles.saveButton]}>
-          <Image style={styles.saveIcon} source={heartEmpty} />
+          <Image style={styles.saveIcon} source={icons.heartEmpty} />
         </TouchableOpacity>
         <LinearGradient
           colors={['#8C8C8C00', '#D3D3D3']}
@@ -76,7 +76,7 @@ const MovieDetails = ({route}) => {
           {/* Rating - Poster - Rating */}
           <View style={styles.ratingPosterContainer}>
             <View style={styles.ratingContainer}>
-              <Image style={styles.ratingIcon} source={star} />
+              <Image style={styles.ratingIcon} source={icons.star} />
               <Text style={styles.ratingScore}>
                 {info.imdbRating ? info.imdbRating : 'N/A'}
                 <Text style={styles.ratingTotalScore}>/10</Text>
@@ -87,15 +87,12 @@ const MovieDetails = ({route}) => {
               <Image
                 style={styles.moviePoster}
                 source={{
-                  uri:
-                    info.Poster === 'N/A'
-                      ? 'https://media.comicbook.com/files/img/default-movie.png'
-                      : info.Poster,
+                  uri: info.Poster === 'N/A' ? DEFAULT_POSTER : info.Poster,
                 }}
               />
             </View>
             <View style={styles.ratingContainer}>
-              <Image style={styles.ratingIcon} source={film} />
+              <Image style={styles.ratingIcon} source={icons.film} />
               <Text style={styles.ratingScore}>
                 {info.Ratings.length > 0 &&
                 /\/100$/.test(info.Ratings[info.Ratings.length - 1].Value)
@@ -153,7 +150,11 @@ const MovieDetails = ({route}) => {
                 scrollEnabled={info.Actors.split(', ').length >= 4}
                 style={styles.movieActorsContainer}>
                 {info.Actors.split(', ').map((actor, ind) => (
-                  <ActorLink key={ind} actorName={actor} />
+                  <ActorLink
+                    key={ind}
+                    actorName={actor}
+                    actorImg={images.actorImg}
+                  />
                 ))}
               </ScrollView>
             )}
@@ -164,7 +165,7 @@ const MovieDetails = ({route}) => {
             <View style={styles.primaryButton}>
               <CtaButton
                 buttonColor={'#FF6666'}
-                imagePath={heartWhite}
+                imagePath={icons.heartWhite}
                 text={'Add to Saved Movies'}
                 textColor={'#FFFFFF'}
               />
@@ -172,7 +173,7 @@ const MovieDetails = ({route}) => {
             <View>
               <CtaButton
                 buttonColor={'#343467'}
-                imagePath={share}
+                imagePath={icons.share}
                 text={'Share'}
                 textColor={'#E1E1E1'}
               />

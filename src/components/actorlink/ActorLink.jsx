@@ -2,9 +2,7 @@ import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './actorlink.style';
 
-const actorImg = require('../../assets/images/actor.jpg');
-
-const ActorLink = ({actorName}) => {
+const ActorLink = ({actorName, actorImg}) => {
   return (
     <TouchableOpacity style={styles.button}>
       <View style={styles.actorImageContainer}>
