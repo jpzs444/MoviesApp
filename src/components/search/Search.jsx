@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, TextInput, View} from 'react-native';
+import {Image, TextInput, View} from 'react-native';
+import {styles} from './search.style';
 
-const searchIcon = require('../assets/icons/search.png');
+const searchIcon = require('../../assets/icons/search.png');
 
 const Search = ({onSearchChange}) => {
   const [searchValue, setSearchValue] = useState('');
@@ -28,28 +29,3 @@ const Search = ({onSearchChange}) => {
 };
 
 export default Search;
-
-const styles = StyleSheet.create({
-  searchContainer: {
-    position: 'relative',
-  },
-  text: {
-    fontFamily: 'Roboto-Regular',
-    fontSize: 16,
-    color: '#141313',
-  },
-  search: {
-    backgroundColor: '#F2F2F2',
-    borderRadius: 10,
-    paddingVertical: 6,
-    paddingLeft: 47,
-  },
-  searchIcon: {
-    width: 22,
-    height: 22,
-    opacity: 0.4,
-    position: 'absolute',
-    top: 10,
-    left: 14,
-  },
-});
