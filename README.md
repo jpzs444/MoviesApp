@@ -1,11 +1,12 @@
 # Movies App
 
-Movies List with search result:
-![](screenshots/movie-search.png)
+<p>Movies List with search result:<p>
+<img src="screenshots/movie-search.png" width="316" />
 
-Movie Details
-![](screenshots/movie-details1.png)
-![](screenshots/movie-details2.png)
+
+<p>Movie Details:<p>
+<img src="screenshots/movie-details1.png" width="316" />
+<img src="screenshots/movie-details2.png" width="316" />
 
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
