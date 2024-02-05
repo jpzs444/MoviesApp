@@ -148,11 +148,14 @@ const MovieDetails = ({route}) => {
             {info.Actors === 'N/A' ? (
               <Text style={styles.movieActorsNA}>N/A</Text>
             ) : (
-              <View style={styles.movieActorsContainer}>
+              <ScrollView
+                horizontal={true}
+                scrollEnabled={info.Actors.split(', ').length >= 4}
+                style={styles.movieActorsContainer}>
                 {info.Actors.split(', ').map((actor, ind) => (
                   <ActorLink key={ind} actorName={actor} />
                 ))}
-              </View>
+              </ScrollView>
             )}
           </View>
 

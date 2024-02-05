@@ -163,7 +163,6 @@ export const styles = StyleSheet.create({
   },
   movieActorsContainer: {
     flexDirection: 'row',
-    gap: 30,
     marginTop: 22,
   },
   moviesActorsTitle: {

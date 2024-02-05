@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   button: {
     width: 80,
+    marginRight: 30,
   },
   actorImageContainer: {
     width: 70,
