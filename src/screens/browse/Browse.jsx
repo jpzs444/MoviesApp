@@ -71,7 +71,7 @@ const Browse = () => {
   };
 
   return (
-    <View style={styles.browserContainer}>
+    <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerTitle}>Browse</Text>
         <TouchableOpacity>
