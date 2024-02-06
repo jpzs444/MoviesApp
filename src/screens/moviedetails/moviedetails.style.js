@@ -60,6 +60,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 24,
     marginHorizontal: 30,
+    opacity: 0.65,
   },
   ratingIcon: {
     width: 30,

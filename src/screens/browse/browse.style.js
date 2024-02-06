@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     marginVertical: 12,
-    opacity: 0.65,
+    opacity: 0.3,
   },
   showMoreText: {
     fontFamily: 'Roboto-Medium',
